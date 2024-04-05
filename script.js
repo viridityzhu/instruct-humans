@@ -1,14 +1,14 @@
 
 var VIDEO_ASPECT_RATIO = 16.0 / 9.0;
 
-var farmTextStrings = [
-    "Original NeRF",
-    "<em>\"Make it autumn\"</em>",
-    "<em>\"Make it look like the Namibian desert\"</em>",
-    "<em>\"Make it midnight\"</em>",
-    "<em>\"Make it look like it just snowed\"</em>",
-    "<em>\"Make it stormy\"</em>",
-    "<em>\"Make it sunset\"</em>",
+var bigTextStrings = [
+    "Original Avatar",
+    "<em>\"Turn him into a Modigliani painting\"</em>",
+    "<em>\"Make him wear traditional Japanese kimono\"</em>",
+    "<em>\"Turn him into Tolkien Elf\"</em>",
+    "<em>\"Turn him into a clown\"</em>",
+    "<em>\"Put the person in a suit\"</em>",
+    "<em>\"Turn him into Lord Voldemort\"</em>",
 ];
 
 var bearTextStrings = [
@@ -25,28 +25,29 @@ $("#farm-video").on('loadedmetadata', function() {
   });
 
 $(function() {
-    current_farm_idx = 0;
+    current_big_idx = 0;
     current_bear_idx = 0;
 
-    farmVideo = document.getElementById('farm-video');
+    big9Video = document.getElementById('big-9-video');
+    big32Video = document.getElementById('big-32-video');
     bearVideo = document.getElementById('bear-video');
 
-    farmText = document.getElementById('farm-text');
+    bigText = document.getElementById('big-text');
     bearText = document.getElementById('bear-text');
 
-    farmThumbnails = [
-        document.getElementById('original'),
-        document.getElementById('autumn'),
-        document.getElementById('desert-sand'),
-        document.getElementById('midnight'),
-        document.getElementById('snow'),
-        document.getElementById('storm'),
-        document.getElementById('sunset'),
+    bigThumbnails = [
+        document.getElementById('ori'),
+        document.getElementById('modi'),
+        document.getElementById('jap'),
+        document.getElementById('elf'),
+        document.getElementById('clown'),
+        document.getElementById('suit'),
+        document.getElementById('vold'),
       ];
-      for (var i = 0; i < farmThumbnails.length; i++) {
-        farmThumbnails[i].addEventListener('click', change_farm_index.bind(this, i));
+      for (var i = 0; i < bigThumbnails.length; i++) {
+        bigThumbnails[i].addEventListener('click', change_big_index.bind(this, i));
       }
-      change_farm_index(current_farm_idx);
+      change_big_index(current_big_idx);
 
 
       bearThumbnails = [
@@ -62,15 +63,17 @@ $(function() {
 
   });
   
-function change_farm_index (idx) {
-    farmThumbnails[idx].classList.add("active-btn");
-    if (current_farm_idx != idx) {
-        farmThumbnails[current_farm_idx].classList.remove("active-btn");
+function change_big_index (idx) {
+    bigThumbnails[idx].classList.add("active-btn");
+    if (current_big_idx != idx) {
+        bigThumbnails[current_big_idx].classList.remove("active-btn");
     }
-    current_farm_idx = idx;
-    farmText.innerHTML = farmTextStrings[idx];
-    farmVideo.src = "data/videos/farm/farm-" + farmThumbnails[idx].id + ".mp4";
-    farmVideo.load();
+    current_big_idx = idx;
+    bigText.innerHTML = bigTextStrings[idx];
+    big9Video.src = "data/videos/9/converted_9_" + bigThumbnails[idx].id + "_video.mp4";
+    big9Video.load();
+    big32Video.src = "data/videos/32/converted_32_" + bigThumbnails[idx].id + "_video.mp4";
+    big32Video.load();
 }
 
 function change_bear_index (idx) {
